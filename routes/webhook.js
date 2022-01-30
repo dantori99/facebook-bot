@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 
@@ -21,7 +22,7 @@ app.post('/webhook', (req, res) => {
 
 app.get('/webhook', (req, res) => {
 
-    let VERIFY_TOKEN = "<YOUR_VERIFY_TOKEN>"
+    let VERIFY_TOKEN = process.env.FB_TOKEN;
 
     let mode = req.query['hub.mode'];
     let token = req.query['hub.verify_token'];
