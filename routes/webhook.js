@@ -12,7 +12,7 @@ app.post('/webhook', (req, res) => {
     // Iterate over each entry - there may be multiple if batched
     body.entry.forEach(function(entry) {
         // Gets the body of the webhook event
-        console.log(entry);
+        console.log(entry.messaging[0].sender);
         let webhook_event = entry.messaging[0];
         // console.log(webhook_event);
 
