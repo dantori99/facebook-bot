@@ -5,6 +5,7 @@ const http = require('http');
 const cors = require('cors');
 const port = process.env.PORT || 1337;
 const webhook = require('./routes/webhook')
+const ejscript = require('./views/homepage.ejs')
 
 const app = express();
 
@@ -23,9 +24,7 @@ const corsOptions = {
 
 const server = http.createServer(app);
 
-app.use('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/', ejscript)
 app.use(webhook);
 
 app.use(cors(corsOptions));
