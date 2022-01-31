@@ -13,7 +13,7 @@ app.post('/webhook', (req, res) => {
     body.entry.forEach(function(entry) {
         // Gets the body of the webhook event
         let webhook_event = entry.messaging[0];
-        console.log(webhook_event);
+        return console.log(webhook_event);
 
 
         // Get the sender PSID
@@ -71,6 +71,7 @@ function handleMessage(sender_psid, received_message) {
         response = {
         "text": `You sent the message: "${received_message.text}". Now send me an image!`
      } 
+        
   }  else if (received_message.attachments) {
   
     // Gets the URL of the message attachment
@@ -112,7 +113,7 @@ function handlePostback(sender_psid, received_postback) {
   
     // Get the payload for the postback
     let payload = received_postback.payload;
-    
+
     // Set the response based on the postback payload
     if (payload === 'yes') {
       response = { "text": "Thanks!" }
