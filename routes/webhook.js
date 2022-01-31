@@ -22,7 +22,7 @@ app.post('/webhook', (req, res) => {
         }, function (error, response, body) {
 
         if (!error && response.statusCode === 200) {
-            console.log(body) // Print the json response
+            console.log(body.first_name) // Print the json response
             }
         })
         // Get the sender PSID
