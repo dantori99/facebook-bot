@@ -22,15 +22,15 @@ const corsOptions = {
 };
 
 const server = http.createServer(app);
-let configViewEngine = (app) => {
-    app.set("view engine", "ejs");
-    app.set("views","./views");
-};
-configViewEngine(app);
+// let configViewEngine = (app) => {
+//     app.set("view engine", "ejs");
+//     app.set("views","./views");
+// };
+// configViewEngine(app);
 
-app.use((req, res) => {
-  return res.render('homepage.ejs')
-})
+// app.use((req, res) => {
+//   res.render('homepage.ejs')
+// })
 
 app.use(webhook);
 
