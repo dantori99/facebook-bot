@@ -15,18 +15,27 @@ app.post('/webhook', (req, res) => {
         let webhook_event = entry.messaging[0];
         console.log(webhook_event);
 
+        let url = `https://graph.facebook.com/${webhook_event.sender.id}?fields=first_name,last_name,profile_pic&access_token=${process.env.FB_TOKEN}`
+        request({
+            url: url,
+            json: true
+        }, function (error, response, body) {
 
+        if (!error && response.statusCode === 200) {
+            console.log(body) // Print the json response
+            }
+        })
         // Get the sender PSID
-        let sender_psid = webhook_event.sender.id;
-        console.log('Sender PSID: ' + sender_psid);
+        // let sender_psid = webhook_event.sender.id;
+        // console.log('Sender PSID: ' + sender_psid);
         
-        // Check if the event is a message or postback and
-        // pass the event to the appropriate handler function
-        if (webhook_event.message) {
-          handleMessage(sender_psid, webhook_event.message);        
-        } else if (webhook_event.postback) {
-          handlePostback(sender_psid, webhook_event.postback);
-        }
+        // // Check if the event is a message or postback and
+        // // pass the event to the appropriate handler function
+        // if (webhook_event.message) {
+        //   handleMessage(sender_psid, webhook_event.message);        
+        // } else if (webhook_event.postback) {
+        //   handlePostback(sender_psid, webhook_event.postback);
+        // }
     });
 
     // Return a '200 OK' response to all events
