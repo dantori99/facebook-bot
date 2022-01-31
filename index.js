@@ -5,7 +5,6 @@ const http = require('http');
 const cors = require('cors');
 const port = process.env.PORT || 1337;
 const webhook = require('./routes/webhook')
-const ejscript = require('./views/homepage.ejs')
 
 const app = express();
 
@@ -23,8 +22,16 @@ const corsOptions = {
 };
 
 const server = http.createServer(app);
+let configViewEngine = (app) => {
+    app.set("view engine", "ejs");
+    app.set("views","./views");
+};
+configViewEngine(app);
 
-app.use('/', ejscript)
+app.use((req, res) => {
+  return res.render('homepage.ejs')
+})
+
 app.use(webhook);
 
 app.use(cors(corsOptions));
