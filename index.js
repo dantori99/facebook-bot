@@ -23,6 +23,9 @@ const corsOptions = {
 
 const server = http.createServer(app);
 
+app.use('/', (req, res) => {
+  res.send('Hello World!')
+})
 app.use(webhook);
 
 app.use(cors(corsOptions));
