@@ -21,6 +21,9 @@ const corsOptions = {
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 const server = http.createServer(app);
 // let configViewEngine = (app) => {
 //     app.set("view engine", "ejs");
